@@ -1,11 +1,15 @@
 {
   "dependencies": {
     "body-parser": "^1.20.2",
+    "concurrently": "^8.0.1",
     "express": "^4.18.2",
     "mongoose": "^7.0.4"
   },
   "scripts": {
-    "start": "nodemon ./src/server.js"
+    "server": "nodemon ./src/server.js",
+    "client": "npm start --prefix client",
+    "start": "nodemon ./src/server.js",
+    "dev": "npm run server & npm run client && fg"
   },
   "name": "rideshare",
   "version": "1.0.0",
