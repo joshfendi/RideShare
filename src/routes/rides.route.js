@@ -34,6 +34,7 @@ router.post("/add_ride", (req, res) => {
   const ridemodels = new RidesModel();
   ridemodels.user = req.body.user;
   ridemodels.date = req.body.date;
+  ridemodels.ride_id = req.body.ride_id;
   ridemodels.origin = req.body.origin;
   ridemodels.destination = req.body.destination;
   ridemodels.uber = req.body.uber;
