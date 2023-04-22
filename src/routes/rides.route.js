@@ -8,6 +8,12 @@ router.get("/", (req, res) => {
   res.json({ message: "rides API yep" });
 });
 
+/*
+ * @Params:
+ *      None
+ * @Returns:
+ *      All rides currently in table
+ */
 router.route("/get_rides").get((req, res) => {
   RidesModel.find()
     .then((ridemodels) => {
@@ -18,6 +24,12 @@ router.route("/get_rides").get((req, res) => {
     });
 });
 
+/*
+ * @Params:
+ *      Ride object: See doc for schema
+ * @Returns:
+ *      Success or Fail code
+ */
 router.post("/add_ride", (req, res) => {
   const ridemodels = new RidesModel();
   ridemodels.user = req.body.user;
@@ -35,6 +47,26 @@ router.post("/add_ride", (req, res) => {
     .catch((err) => {
       res.send(err);
     });
+});
+
+/*
+ * @Params:
+ *      tripId: Unique String ID that identifies the ride
+ * @Returns:
+ *      Returns ride object if found, 404 if object not found, 500 if there is a server error.
+ */
+router.get("/get_ride/:ride_id", async (req, res) => {
+  const ride_id = req.params.ride_id;
+  try {
+    const ride = await RidesModel.findOne({ ride_id: ride_id });
+    if (!ride) {
+        return res.status(404).json({ message: "Trip not found" });
+    }
+    res.json(ride);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server Error" });
+  }
 });
 
 module.exports = router;
