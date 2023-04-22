@@ -28,7 +28,7 @@ const LoginPage = ({ navigation }) => {
       <Text style={styles.title}>Login</Text>
       <TextInput
         style={styles.input}
-        placeholder="Usname"
+        placeholder="Username"
         value={username}
         onChangeText={(text) => setUsername(text)}
       />
