@@ -6,33 +6,45 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 import LoginScreen from "./Screens/LoginScreen";
 import SignUpScreen from "./Screens/SignUpScreen";
-import HomeScreen from "./Screens/HomeScreen";
-import ScheduleScreen from "./Screens/ScheduleScreen";
+import YourTripsScreen from "./Screens/YourTripsScreen";
+
+import ScheduleATripScreen from "./Screens/ScheduleATripScreen";
+import AddTripScreen from "./Screens/AddTripScreen"
+
+
 import ProfileScreen from "./Screens/ProfileScreen";
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function HomeStack() {
+function HomeStack({navigation}) {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={ScheduleATripScreen} />
+      <Stack.Screen name="AddTripScreen" component={AddTripScreen} />
     </Stack.Navigator>
   );
 }
 
-function ScheduleStack() {
+function YourTripsStack({}) {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Schedule" component={ScheduleScreen} />
+      <Stack.Screen
+        name="YourTripsScreen"
+        component={YourTripsScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -59,48 +71,40 @@ function App() {
       >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Sign Up" component={SignUpScreen} />
-        <Stack.Screen name="Home" component={HomeTab} />
+        <Stack.Screen name="Home" component={DefaultTab} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
 
-function HomeTab() {
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={HomeStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" size={24} color={color} />
-          ),
+  function DefaultTab() {
+    return (
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
         }}
-      />
-      <Tab.Screen
-        name="Schedule"
-        component={ScheduleStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="plus" size={24} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" size={24} color={color} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
+      >
+        <Tab.Screen
+          name="Your Trips"
+          component={YourTripsStack}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="car" size={24} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen name="Schedule a Trip" component={HomeStack} />
+        <Tab.Screen
+          name="Profile"
+          component={ProfileStack}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="account" size={24} color={color} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    );
+  }
 }
 
 export default App;

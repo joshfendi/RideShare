@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const ScheduleScreen = () => {
+const YourTripsScreen = () => {
   return (
     <View>
-      <Text>Schedule Screen</Text>
+      <Text>YourTripsScreen Screen</Text>
     </View>
   );
 };
 
-export default ScheduleScreen;
+export default YourTripsScreen;
