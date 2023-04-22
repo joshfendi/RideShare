@@ -34,6 +34,7 @@ router.post("/add_ride", (req, res) => {
   const ridemodels = new RidesModel();
   ridemodels.user = req.body.user;
   ridemodels.date = req.body.date;
+  ridemodels.ride_id = req.body.ride_id;
   ridemodels.origin = req.body.origin;
   ridemodels.destination = req.body.destination;
   ridemodels.uber = req.body.uber;
@@ -60,13 +61,76 @@ router.get("/get_ride/:ride_id", async (req, res) => {
   try {
     const ride = await RidesModel.findOne({ ride_id: ride_id });
     if (!ride) {
-        return res.status(404).json({ message: "Trip not found" });
+      return res.status(404).json({ message: "Trip not found" });
     }
     res.json(ride);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Server Error" });
   }
+});
+
+/*
+ * Add a user to an existing trip. This makes the assumption that users only are able to join rides that have ENOUGH capacity
+ * @Params:
+ *      user_id: Unique String ID that identifies the user
+ *      user_status: Boolean true if user is a driver false if they are just a passenger
+ *      ride_id: Unique String ID that identifies the ride
+ * @Returns:
+ *      Success or Failure code
+ *
+ */
+router.post("/join_trip", (req, res) => {
+  const user_id = req.body.userId;
+  const user_status = req.body.user_status;
+  const ride_id = req.body.tripId;
+
+  RidesModel.findOneAndUpdate(
+    { ride_id: ride_id },
+    { $push: { users: { name: user_id, driver: user_status } } },
+    { new: true } // Returns updated document
+  )
+    .then((updated_ride) => {
+      res.json(updated_ride);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "Server Error" });
+    });
+});
+
+/*
+ * Remove a user to an existing trip.
+ * @Params:
+ *      user_id: Unique String ID that identifies the user
+ *      ride_id: Unique String ID that identifies the ride
+ * @Returns:
+ *      Success or Failure code. Check modifiedCount to see if the user was deleted.
+ */
+router.post("/leave_trip", (req, res) => {
+  const user_id = req.body.userId;
+  const ride_id = req.body.tripId;
+
+  RidesModel.updateOne(
+    { ride_id: ride_id },
+    { $pull: { users: { name: user_id} } }
+  )
+  .then((result) => {
+    if (result.modifiedCount > 0) {
+      RidesModel.findOneAndDelete({ ride_id: ride_id , users: { $size: 0 } }).
+      then((result) => {
+        res.json(200);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+    res.json(result);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json({ message: "Server Error" });
+  });
 });
 
 module.exports = router;
