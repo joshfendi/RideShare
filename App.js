@@ -4,7 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-import LoginPage from "./Screens/LoginPage";
+import LoginScreen from "./Screens/LoginScreen";
+import SignUpScreen from "./Screens/SignUpScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import ScheduleScreen from "./Screens/ScheduleScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
@@ -56,7 +57,8 @@ function App() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Sign Up" component={SignUpScreen} />
         <Stack.Screen name="Home" component={HomeTab} />
       </Stack.Navigator>
     </NavigationContainer>
