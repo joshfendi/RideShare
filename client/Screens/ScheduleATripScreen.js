@@ -83,7 +83,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <TouchableOpacity
           style={styles.seeTripsButton}
-          onPress={() => navigation.navigate("AddTripScreen")}
+          onPress={() => navigation.navigate("AvailableTripsScreen")}
         >
           <Text style={styles.seeTripsButtonText}>See Trips</Text>
         </TouchableOpacity>

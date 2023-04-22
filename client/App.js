@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import AddTripScreen from "./Screens/AddTripScreen"
+import AvailableTripsScreen from "./Screens/AvailableTripsScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import ScheduleATripScreen from "./Screens/ScheduleATripScreen";
@@ -24,6 +25,7 @@ function HomeStack({navigation}) {
     >
       <Stack.Screen name="Home" component={ScheduleATripScreen} />
       <Stack.Screen name="AddTripScreen" component={AddTripScreen} />
+      <Stack.Screen name="AvailableTripsScreen" component={AvailableTripsScreen} />
     </Stack.Navigator>
   );
 }
