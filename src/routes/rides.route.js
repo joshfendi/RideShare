@@ -8,6 +8,12 @@ router.get("/", (req, res) => {
   res.json({ message: "rides API yep" });
 });
 
+/*
+ * @Params:
+ *      None
+ * @Returns:
+ *      All rides currently in table
+ */
 router.route("/get_rides").get((req, res) => {
   RidesModel.find()
     .then((ridemodels) => {
@@ -18,6 +24,12 @@ router.route("/get_rides").get((req, res) => {
     });
 });
 
+/*
+ * @Params:
+ *      Ride object: See doc for schema
+ * @Returns:
+ *      Success or Fail code
+ */
 router.post("/add_ride", (req, res) => {
   const ridemodels = new RidesModel();
   ridemodels.user = req.body.user;
