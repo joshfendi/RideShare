@@ -80,19 +80,18 @@ router.get("/get_ride/:ride_id", async (req, res) => {
  *      Success or Failure code
  *
  */
-router.post("/join_trip", async (req, res) => {
+router.post("/join_trip", (req, res) => {
   const user_id = req.body.userId;
   const user_status = req.body.user_status;
   const ride_id = req.body.tripId;
 
-  console.log(user_id);
   RidesModel.findOneAndUpdate(
     { ride_id: ride_id },
     { $push: { users: { name: user_id, driver: user_status } } },
     { new: true } // Returns updated document
   )
-    .then((updatedRide) => {
-      res.json(updatedRide);
+    .then((updated_ride) => {
+      res.json(updated_ride);
     })
     .catch((err) => {
       console.log(err);
