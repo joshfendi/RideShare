@@ -99,4 +99,38 @@ router.post("/join_trip", (req, res) => {
     });
 });
 
+/*
+ * Remove a user to an existing trip.
+ * @Params:
+ *      user_id: Unique String ID that identifies the user
+ *      ride_id: Unique String ID that identifies the ride
+ * @Returns:
+ *      Success or Failure code. Check modifiedCount to see if the user was deleted.
+ */
+router.post("/leave_trip", (req, res) => {
+  const user_id = req.body.userId;
+  const ride_id = req.body.tripId;
+
+  RidesModel.updateOne(
+    { ride_id: ride_id },
+    { $pull: { users: { name: user_id} } }
+  )
+  .then((result) => {
+    if (result.modifiedCount > 0) {
+      RidesModel.findOneAndDelete({ ride_id: ride_id , users: { $size: 0 } }).
+      then((result) => {
+        res.json(200);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+    res.json(result);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json({ message: "Server Error" });
+  });
+});
+
 module.exports = router;
