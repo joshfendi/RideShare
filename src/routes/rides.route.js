@@ -60,13 +60,43 @@ router.get("/get_ride/:ride_id", async (req, res) => {
   try {
     const ride = await RidesModel.findOne({ ride_id: ride_id });
     if (!ride) {
-        return res.status(404).json({ message: "Trip not found" });
+      return res.status(404).json({ message: "Trip not found" });
     }
     res.json(ride);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Server Error" });
   }
+});
+
+/*
+ * Add a user to an existing trip. This makes the assumption that users only are able to join rides that have ENOUGH capacity
+ * @Params:
+ *      user_id: Unique String ID that identifies the user
+ *      user_status: Boolean true if user is a driver false if they are just a passenger
+ *      ride_id: Unique String ID that identifies the ride
+ * @Returns:
+ *      Success or Failure code
+ *
+ */
+router.post("/join_trip", async (req, res) => {
+  const user_id = req.body.userId;
+  const user_status = req.body.user_status;
+  const ride_id = req.body.tripId;
+
+  console.log(user_id);
+  RidesModel.findOneAndUpdate(
+    { ride_id: ride_id },
+    { $push: { users: { name: user_id, driver: user_status } } },
+    { new: true } // Returns updated document
+  )
+    .then((updatedRide) => {
+      res.json(updatedRide);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "Server Error" });
+    });
 });
 
 module.exports = router;
