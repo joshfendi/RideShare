@@ -1,24 +1,174 @@
-
-import React from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  ScrollViewComponent,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const YourTripsScreen = () => {
   const navigation = useNavigation();
 
   return (
     <SafeAreaView>
-        <View style={styles.container}></View>
-        <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Text style={styles.backButtonText}>Back</Text>
-        </TouchableOpacity>
-      <Text style={styles.headerTitle}>YourTrips!</Text>
-      <View style={styles.placeholder}></View>
+      <View style={styles.container}></View>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>YourTrips!</Text>
+        <View style={styles.placeholder}></View>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('GroupChatScreen')}>
-        <Text>Go to Group Chat Screen</Text>
-      </TouchableOpacity>
+
+      {/* Groupchats */}
+      <ScrollView>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("GroupChatScreen")}
+          style={{ alignItems: "center" }}
+        >
+          <View
+            style={{
+              marginTop: 20,
+              backgroundColor: "lightblue",
+              height: 90,
+              width: "80%",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontSize: 25 }}>Groupchat 1</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate("GroupChatScreen")}
+          style={{ alignItems: "center" }}
+        >
+          <View
+            style={{
+              marginTop: 20,
+              backgroundColor: "lightblue",
+              height: 90,
+              width: "80%",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontSize: 25 }}>Groupchat 2</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("GroupChatScreen")}
+          style={{ alignItems: "center" }}
+        >
+          <View
+            style={{
+              marginTop: 20,
+              backgroundColor: "lightblue",
+              height: 90,
+              width: "80%",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontSize: 25 }}>Groupchat 3</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("GroupChatScreen")}
+          style={{ alignItems: "center" }}
+        >
+          <View
+            style={{
+              marginTop: 20,
+              backgroundColor: "lightblue",
+              height: 90,
+              width: "80%",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontSize: 25 }}>Groupchat 4</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("GroupChatScreen")}
+          style={{ alignItems: "center" }}
+        >
+          <View
+            style={{
+              marginTop: 20,
+              backgroundColor: "lightblue",
+              height: 90,
+              width: "80%",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontSize: 25 }}>Groupchat 5</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("GroupChatScreen")}
+          style={{ alignItems: "center" }}
+        >
+          <View
+            style={{
+              marginTop: 20,
+              backgroundColor: "lightblue",
+              height: 90,
+              width: "80%",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontSize: 25 }}>Groupchat 6</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("GroupChatScreen")}
+          style={{ alignItems: "center" }}
+        >
+          <View
+            style={{
+              marginTop: 20,
+              backgroundColor: "lightblue",
+              height: 90,
+              width: "80%",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontSize: 25 }}>Groupchat 7</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("GroupChatScreen")}
+          style={{ alignItems: "center" }}
+        >
+          <View
+            style={{
+              marginTop: 20,
+              backgroundColor: "lightblue",
+              height: 90,
+              width: "80%",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontSize: 25 }}>Groupchat 8</Text>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -58,6 +208,5 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
-
 });
 export default YourTripsScreen;
