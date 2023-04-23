@@ -23,12 +23,7 @@ const AvailableTripsScreen = ({ navigation }) => {
   const [trips, setTrips] = useState([]);
 
   const handleCreateTrip = () => {
-    const newTrip = { startLocation, endLocation, date, leaveByTime };
-    setTrips([...trips, newTrip]);
-    setStartLocation("");
-    setEndLocation("");
-    setDate("");
-    setLeaveByTime("");
+    navigation.navigate("AddTripScreen");
   };
 
   useEffect(() => {
@@ -48,15 +43,18 @@ const AvailableTripsScreen = ({ navigation }) => {
   }, []);
 
   let AvailableTripsCards = trips.map((item, index) => {
-    return (<AvailableTripsCard
-      key={index}
-      date={item.date}
-      type={item.payment_type ? "Split" : "Negotiable"}
-      total={item.price}
-    ></AvailableTripsCard>);
+    return (
+      <AvailableTripsCard
+        index={index}
+        date={item.date}
+        payment_type={item.payment_type ? "Split" : "Negotiable"}
+        price={item.price}
+      ></AvailableTripsCard>
+    );
   });
   return (
     <View style={styles.container}>
+      {/* HEADER */}
       <View style={styles.header}>
         <TouchableOpacity>
           <MaterialIcons
@@ -116,23 +114,8 @@ const AvailableTripsScreen = ({ navigation }) => {
       <View
         style={{ width: "100%", height: 2, backgroundColor: "black" }}
       ></View>
-      {/* <FlatList
-      
-        data={trips}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.tripContainer}>
-            <Text style={styles.tripTitle}>
-              {item.startLocation} - {item.endLocation}
-            </Text>
-            <Text style={styles.tripText}>Date: {item.date}</Text>
-            <Text style={styles.tripText}>
-              Leave by time: {item.leaveByTime}
-            </Text>
-          </View>
-        )}
-      /> */}
-      <AvailableTripsCard></AvailableTripsCard>
+
+      {/* LIST OF TRIPS */}
       {AvailableTripsCards}
     </View>
   );
