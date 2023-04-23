@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,6 +8,10 @@ import {
   StyleSheet,
 } from "react-native";
 import AvailableTripsCard from "./Components/AvailableTripsCard";
+import Constants from "expo-constants";
+
+const { manifest } = Constants;
+const uri = `http://${manifest.debuggerHost.split(":").shift()}:3000`;
 
 const AvailableTripsScreen = () => {
   const [startLocation, setStartLocation] = useState("");
@@ -25,6 +29,30 @@ const AvailableTripsScreen = () => {
     setLeaveByTime("");
   };
 
+  useEffect(() => {
+    const fetchRides = async () => {
+      fetch(uri + "/api/rides/get_rides")
+        .then((response) => response.json())
+        .then((data) => {
+          setTrips(data);
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error(error);
+        });
+    };
+
+    fetchRides();
+  }, []);
+
+  let AvailableTripsCards = trips.map((item, index) => {
+    return (<AvailableTripsCard
+      key={index}
+      date={item.date}
+      type={item.payment_type ? "Split" : "Negotiable"}
+      total={item.price}
+    ></AvailableTripsCard>);
+  });
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -95,6 +123,7 @@ const AvailableTripsScreen = () => {
         )}
       /> */}
       <AvailableTripsCard></AvailableTripsCard>
+      {AvailableTripsCards}
     </View>
   );
 };
