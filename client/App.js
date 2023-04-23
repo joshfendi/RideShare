@@ -6,6 +6,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 import AddTripScreen from "./Screens/AddTripScreen";
 import AvailableTripsScreen from "./Screens/AvailableTripsScreen";
+import GroupChatScreen from "./Screens/GroupChatScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import ScheduleATripScreen from "./Screens/ScheduleATripScreen";
@@ -47,6 +48,14 @@ function YourTripsStack({}) {
       <Stack.Screen
         name="YourTripsScreen"
         component={YourTripsScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+<Stack.Screen
+        name="GroupChatScreen"
+        component={GroupChatScreen}
         options={{
           headerShown: false,
         }}

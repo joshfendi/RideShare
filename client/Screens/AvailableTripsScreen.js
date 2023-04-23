@@ -7,6 +7,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import AvailableTripsCard from "./Components/AvailableTripsCard";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -116,7 +117,7 @@ const AvailableTripsScreen = ({ navigation }) => {
       ></View>
 
       {/* LIST OF TRIPS */}
-      {AvailableTripsCards}
+      <ScrollView>{AvailableTripsCards}</ScrollView>
     </View>
   );
 };

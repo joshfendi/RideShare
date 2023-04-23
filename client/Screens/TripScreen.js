@@ -7,6 +7,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import AvailableTripsCard from "./Components/AvailableTripsCard";
 import Constants from "expo-constants";
@@ -66,7 +67,7 @@ const TripScreen = ({ navigation }) => {
             onPress={() => navigation.goBack()}
           />
         </TouchableOpacity>
-        <Text style={styles.title}>Trips</Text>
+        <Text style={styles.title}>Group Name / ID: {index}</Text>
       </View>
       <View
         style={{
@@ -93,6 +94,65 @@ const TripScreen = ({ navigation }) => {
         style={{ width: "100%", height: 2, backgroundColor: "black" }}
       ></View>
       {riders}
+
+      <ScrollView>
+        <TouchableOpacity style={{ backgroundColor: "lightblue" }}>
+          <View style={{ marginVertical: 10, marginHorizontal: 10 }}>
+            <Text style={{ fontSize: 30 }}>Driver</Text>
+            <Text style={{ fontSize: 20 }}>Name: Joe Bruin</Text>
+            <Text style={{ fontSize: 20 }}>School: UCLA</Text>
+            <Text style={{ fontSize: 20 }}>Car Model: Ford Mustang 2004</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{ backgroundColor: "#CAE9F5" }}>
+          <View style={{ marginVertical: 10, marginHorizontal: 10 }}>
+            <Text style={{ fontSize: 30 }}>Passenger</Text>
+            <Text style={{ fontSize: 20 }}>Name: Joe Bruin</Text>
+            <Text style={{ fontSize: 20 }}>School: UCLA</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{ backgroundColor: "lightblue" }}>
+          <View style={{ marginVertical: 10, marginHorizontal: 10 }}>
+            <Text style={{ fontSize: 30 }}>Passenger</Text>
+            <Text style={{ fontSize: 20 }}>Name: Joe Bruin</Text>
+            <Text style={{ fontSize: 20 }}>School: UCLA</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{ backgroundColor: "#CAE9F5" }}>
+          <View style={{ marginVertical: 10, marginHorizontal: 10 }}>
+            <Text style={{ fontSize: 30 }}>Passenger</Text>
+            <Text style={{ fontSize: 20 }}>Name: Joe Bruin</Text>
+            <Text style={{ fontSize: 20 }}>School: UCLA</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{ backgroundColor: "lightblue" }}>
+          <View style={{ marginVertical: 10, marginHorizontal: 10 }}>
+            <Text style={{ fontSize: 30 }}>Passenger</Text>
+            <Text style={{ fontSize: 20 }}>Name: Joe Bruin</Text>
+            <Text style={{ fontSize: 20 }}>School: UCLA</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{ backgroundColor: "#CAE9F5" }}>
+          <View style={{ marginVertical: 10, marginHorizontal: 10 }}>
+            <Text style={{ fontSize: 30 }}>Passenger</Text>
+            <Text style={{ fontSize: 20 }}>Name: Joe Bruin</Text>
+            <Text style={{ fontSize: 20 }}>School: UCLA</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{ backgroundColor: "lightblue" }}>
+          <View style={{ marginVertical: 10, marginHorizontal: 10 }}>
+            <Text style={{ fontSize: 30 }}>Passenger</Text>
+            <Text style={{ fontSize: 20 }}>Name: Joe Bruin</Text>
+            <Text style={{ fontSize: 20 }}>School: UCLA</Text>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
@@ -103,7 +163,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: "7%",
-    marginVertical: "15%",
+    marginTop: "15%",
   },
   header: {
     flexDirection: "row",
@@ -114,7 +174,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginRight: "42%",
+    marginRight: "25%",
   },
   inputContainer: {
     marginBottom: 20,
