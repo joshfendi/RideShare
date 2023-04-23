@@ -6,14 +6,16 @@ import {
   Button,
   FlatList,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import AvailableTripsCard from "./Components/AvailableTripsCard";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Constants from "expo-constants";
 
 const { manifest } = Constants;
 const uri = `http://${manifest.debuggerHost.split(":").shift()}:3000`;
 
-const AvailableTripsScreen = () => {
+const AvailableTripsScreen = ({ navigation }) => {
   const [startLocation, setStartLocation] = useState("");
   const [endLocation, setEndLocation] = useState("");
   const [date, setDate] = useState("");
@@ -56,6 +58,14 @@ const AvailableTripsScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <TouchableOpacity>
+          <MaterialIcons
+            name="arrow-back-ios"
+            size={40}
+            color={"#5D84E9"}
+            onPress={() => navigation.goBack()}
+          />
+        </TouchableOpacity>
         <Text style={styles.title}>Trips</Text>
         <Button title="Create trip" onPress={handleCreateTrip} />
       </View>
@@ -145,6 +155,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
+    left: "75%",
   },
   inputContainer: {
     marginBottom: 20,

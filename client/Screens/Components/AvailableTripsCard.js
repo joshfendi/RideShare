@@ -20,13 +20,13 @@ export default function AvailableTripsCard(props) {
   total = props.total;
   return (
     <TouchableOpacity
-      // onPress={() =>
-      //   navigation.navigate("Individual Group Screen", {
-      //     groupName: props.name,
-      //     groupPicture: props.image,
-      //     groupDescription: props.description,
-      //   })
-      // }
+      onPress={() =>
+        navigation.navigate("AddTripScreen", {
+        //   groupName: props.name,
+        //   groupPicture: props.image,
+        //   groupDescription: props.description,
+        })
+      }
       style={styles.container}
     >
       <View style={styles.card}>
