@@ -1,4 +1,4 @@
-# CarpoolCrew
+# CarpoolCrew (not RideShare)
 Hello there!
 
 This is us:
