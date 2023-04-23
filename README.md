@@ -4,9 +4,9 @@ Hello there!
 This is us:
 
 Authors
-Joshua Fendi @joshfendi
-Donald Chung @dchung21
 Brian He @brianhe5
+Donald Chung @dchung21
+Joshua Fendi @joshfendi
 Margaret Wang @the1mag
 
 This project started for LAHacks on 4/21/23.
