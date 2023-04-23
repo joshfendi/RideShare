@@ -6,20 +6,30 @@ import {
   Button,
   FlatList,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import AvailableTripsCard from "./Components/AvailableTripsCard";
 import Constants from "expo-constants";
+import { useRoute } from "@react-navigation/native";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const { manifest } = Constants;
 const uri = `http://${manifest.debuggerHost.split(":").shift()}:3000`;
 
-const AvailableTripsScreen = () => {
+const TripScreen = ({ navigation }) => {
+  // variables
+  const route = useRoute();
+  const { index, payment_type, price, formattedDate, formattedTime } =
+    route.params;
+
+  // price = props.price;
+
   const [startLocation, setStartLocation] = useState("");
   const [endLocation, setEndLocation] = useState("");
   const [date, setDate] = useState("");
   const [split, setSplit] = useState(false);
   const [users, setUsers] = useState([]);
-  const [price, setPrice] = useState(0);
+  // const [price, setPrice] = useState(0);
 
   useEffect(() => {
     const fetchRide = async () => {
@@ -44,40 +54,45 @@ const AvailableTripsScreen = () => {
   const riders = users.map((index, item) => {
     return <Text>item.name</Text>;
   });
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <TouchableOpacity>
+          <MaterialIcons
+            name="arrow-back-ios"
+            size={40}
+            color={"#5D84E9"}
+            onPress={() => navigation.goBack()}
+          />
+        </TouchableOpacity>
         <Text style={styles.title}>Trips</Text>
       </View>
-        <View
-          style={{
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
-          <TextInput
-            style={[styles.input, { width: "48%" }]}
-            placeholder="Date"
-            value={date}
-            onChangeText={setDate}
-          />
-          <TextInput
-            style={[styles.input, { width: "48%" }]}
-            placeholder="Leave by time"
-            value={leaveByTime}
-            onChangeText={setLeaveByTime}
-          />
-          <Text>Type: {split}</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          width: "100%",
+          justifyContent: "space-between",
+        }}
+      >
+        <View style={{ flex: 1 }}>
+          <Text>Leave by</Text>
+          <Text>Date: {formattedDate}</Text>
+          <Text>Time: {formattedTime}</Text>
+        </View>
+
+        <View style={{ flex: 1 }}>
+          <Text>Payment</Text>
+          <Text>Type: {payment_type}</Text>
           <Text>Price: {price}</Text>
-          <Text>Current per passenger: {price/(users.length)}</Text>
+        </View>
       </View>
-          
+      {/* <Text>Current per passenger: {price / users.length}</Text> */}
+
       <View
         style={{ width: "100%", height: 2, backgroundColor: "black" }}
       ></View>
-        {riders}
+      {riders}
     </View>
   );
 };
@@ -99,6 +114,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
+    marginRight: "42%",
   },
   inputContainer: {
     marginBottom: 20,

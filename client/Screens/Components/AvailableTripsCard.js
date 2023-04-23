@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import TripScreen from "./TripScreen";
+import TripScreen from "../TripScreen";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import moment from "moment";
@@ -16,7 +16,7 @@ import moment from "moment";
 export default function AvailableTripsCard(props) {
   const navigation = useNavigation();
 
-  // DONALD BACKEND
+  // Variables
   index = props.index;
   date = props.date;
   payment_type = props.payment_type;
@@ -28,8 +28,12 @@ export default function AvailableTripsCard(props) {
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate(TripScreen, {
-          ride_id: props.ride_id,
+        navigation.navigate("TripScreen", {
+          index: index,
+          payment_type: payment_type,
+          price: price,
+          formattedDate: formattedDate,
+          formattedTime: formattedTime,
         })
       }
       style={styles.container}
@@ -50,13 +54,13 @@ export default function AvailableTripsCard(props) {
 
       <View style={{ flexDirection: "row" }}>
         <View style={styles.timeContainer}>
-          <Text>Leave by:</Text>
-          <Text>
-            {formattedDate} {formattedTime}
-          </Text>
+          <Text>Leave by</Text>
+          <Text>Date: {formattedDate}</Text>
+          <Text>Time: {formattedTime}</Text>
         </View>
 
         <View style={styles.costContainer}>
+          <Text>Payment</Text>
           <Text style={styles.costType}>Type: {payment_type}</Text>
           <Text style={styles.costTotal}>Price: {price} </Text>
         </View>

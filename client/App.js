@@ -10,6 +10,7 @@ import LoginScreen from "./Screens/LoginScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import ScheduleATripScreen from "./Screens/ScheduleATripScreen";
 import SignUpScreen from "./Screens/SignUpScreen";
+import TripScreen from "./Screens/TripScreen";
 import YourTripsScreen from "./Screens/YourTripsScreen";
 
 const Stack = createStackNavigator();
@@ -27,6 +28,10 @@ function HomeStack({ navigation }) {
       <Stack.Screen
         name="AvailableTripsScreen"
         component={AvailableTripsScreen}
+      />
+      <Stack.Screen
+        name="TripScreen"
+        component={TripScreen}
       />
     </Stack.Navigator>
   );
