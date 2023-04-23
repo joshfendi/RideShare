@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -15,11 +15,9 @@ export default function AvailableTripsCard(props) {
   const navigation = useNavigation();
 
   // DONALD BACKEND
-  leavetime = "10:30am";
-  arrivetime = "2:45pm";
-  type = "split";
-  total = "$20";
-
+  leavetime = props.leavetime;
+  type = props.type;
+  total = props.total;
   return (
     <TouchableOpacity
       // onPress={() =>
@@ -47,7 +45,6 @@ export default function AvailableTripsCard(props) {
       <View style={{ flexDirection: "row", backgroundColor: "pink" }}>
         <View style={styles.timeContainer}>
           <Text>Leave by: {leavetime}</Text>
-          <Text>Arrive by: {arrivetime}</Text>
         </View>
 
         <View style={styles.costContainer}>
