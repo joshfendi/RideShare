@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import TripScreen from "./TripScreen";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -20,13 +21,11 @@ export default function AvailableTripsCard(props) {
   total = props.total;
   return (
     <TouchableOpacity
-      // onPress={() =>
-      //   navigation.navigate("Individual Group Screen", {
-      //     groupName: props.name,
-      //     groupPicture: props.image,
-      //     groupDescription: props.description,
-      //   })
-      // }
+      onPress={() =>
+        navigation.navigate(TripScreen, {
+          ride_id: props.ride_id,
+        })
+      }
       style={styles.container}
     >
       <View style={styles.card}>
