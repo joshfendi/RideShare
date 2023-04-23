@@ -6,14 +6,16 @@ import {
   Button,
   FlatList,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import AvailableTripsCard from "./Components/AvailableTripsCard";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Constants from "expo-constants";
 
 const { manifest } = Constants;
 const uri = `http://${manifest.debuggerHost.split(":").shift()}:3000`;
 
-const AvailableTripsScreen = () => {
+const AvailableTripsScreen = ({ navigation }) => {
   const [startLocation, setStartLocation] = useState("");
   const [endLocation, setEndLocation] = useState("");
   const [date, setDate] = useState("");
@@ -21,12 +23,7 @@ const AvailableTripsScreen = () => {
   const [trips, setTrips] = useState([]);
 
   const handleCreateTrip = () => {
-    const newTrip = { startLocation, endLocation, date, leaveByTime };
-    setTrips([...trips, newTrip]);
-    setStartLocation("");
-    setEndLocation("");
-    setDate("");
-    setLeaveByTime("");
+    navigation.navigate("AddTripScreen");
   };
 
   useEffect(() => {
@@ -46,16 +43,27 @@ const AvailableTripsScreen = () => {
   }, []);
 
   let AvailableTripsCards = trips.map((item, index) => {
-    return (<AvailableTripsCard
-      key={index}
-      date={item.date}
-      type={item.payment_type ? "Split" : "Negotiable"}
-      total={item.price}
-    ></AvailableTripsCard>);
+    return (
+      <AvailableTripsCard
+        index={index}
+        date={item.date}
+        payment_type={item.payment_type ? "Split" : "Negotiable"}
+        price={item.price}
+      ></AvailableTripsCard>
+    );
   });
   return (
     <View style={styles.container}>
+      {/* HEADER */}
       <View style={styles.header}>
+        <TouchableOpacity>
+          <MaterialIcons
+            name="arrow-back-ios"
+            size={40}
+            color={"#5D84E9"}
+            onPress={() => navigation.goBack()}
+          />
+        </TouchableOpacity>
         <Text style={styles.title}>Trips</Text>
         <Button title="Create trip" onPress={handleCreateTrip} />
       </View>
@@ -106,23 +114,8 @@ const AvailableTripsScreen = () => {
       <View
         style={{ width: "100%", height: 2, backgroundColor: "black" }}
       ></View>
-      {/* <FlatList
-      
-        data={trips}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.tripContainer}>
-            <Text style={styles.tripTitle}>
-              {item.startLocation} - {item.endLocation}
-            </Text>
-            <Text style={styles.tripText}>Date: {item.date}</Text>
-            <Text style={styles.tripText}>
-              Leave by time: {item.leaveByTime}
-            </Text>
-          </View>
-        )}
-      /> */}
-      <AvailableTripsCard></AvailableTripsCard>
+
+      {/* LIST OF TRIPS */}
       {AvailableTripsCards}
     </View>
   );
@@ -145,6 +138,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
+    left: "75%",
   },
   inputContainer: {
     marginBottom: 20,

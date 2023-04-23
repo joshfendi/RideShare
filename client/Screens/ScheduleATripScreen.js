@@ -38,16 +38,38 @@ const HomeScreen = ({ navigation }) => {
     <View
       style={{
         flex: 1,
-        backgroundColor: "transparent",
+        // backgroundColor: "transparent",
         // zIndex: 6,
       }}
     >
+
+      {/* MAP */}
       <MapScreen />
-      <TouchableOpacity onPress={toggleMenu}>
-        <View style={{ alignItems: "center" }}>
-          <AntDesign name="pluscircleo" size={200} color={"black"} />
-        </View>
-      </TouchableOpacity>
+
+      {/* BUTTON */}
+      <View
+        style={{
+          position: "absolute",
+          bottom: "3%",
+          right: "42.5%",
+          // marginLeft: "50%",
+          // marginRight: "50%",
+          // marginTop: "50%",
+          // flex: 1,
+          // paddingTop: "1000%",
+          zIndex: 1,
+          // backgroundColor: "red",
+        }}
+      >
+        <AntDesign
+          name="pluscircleo"
+          size={70}
+          color={"black"}
+          onPress={toggleMenu}
+        />
+      </View>
+
+      {/* POP UP MENU */}
       <Animated.View
         style={[
           styles.menu,
@@ -121,6 +143,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    zIndex: 3,
   },
   menuTitle: {
     fontSize: 24,
